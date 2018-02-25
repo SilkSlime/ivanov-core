@@ -1,0 +1,12 @@
+{% extends 'index.html' %} {% block content %}
+<div class="col-10" >
+    <h1>ABOUT</h1>
+</div>
+    <script>
+        jQuery(function($){
+            $("#content").removeClass('container');
+            $("#content").addClass('container-fluid');
+            $("#about").attr("style", "color: black")
+        });
+    </script>
+{% endblock %}

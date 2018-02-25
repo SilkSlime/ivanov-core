@@ -1,0 +1,60 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>IVANOV INC.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/idx.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js " integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh " crossorigin="anonymous "></script>
+    <script src="{% static 'assets/jquery/jquery-3.2.1.min.js' %}" type="text/javascript "></script>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.js' %}" type="text/javascript "></script>
+
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shad sticky-top">
+        <a class="navbar-brand">IVANAPP</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a id='main' class="nav-link" href="{% url 'ivanapp:main' %}">Главная</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a id='user' class="nav-link" href="#">Личный кабинет</a>
+                </li>
+                {% endif %}
+            </ul>
+
+            {% if user.is_authenticated %}
+                <a type="button" class="btn btn-outline-success my-2 my-sm-0" type="submit" href="{% url 'ivanapp:logout' %}">Выйти</a>
+            {% else %}
+                <div class="btn-group ml-3" role="group" aria-label="Basic example">
+                    <a type="button" class="btn btn-outline-success my-2 my-sm-0" type="submit" href="{% url 'ivanapp:login' %}">Войти</a>
+                    <a type="button" class="btn btn-outline-success my-2 my-sm-0" type="submit" href="{% url 'ivanapp:register' %}">Зарегистрироваться</a>
+                </div>
+            {% endif %}
+        </div>
+    </nav>
+
+    <div id='content' class="container main_cont mt-5">
+        <div class="row justify-content-md-center main_row">
+            {% block content %} {% endblock %}
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container footer_cont">
+            <span class="text-muted">SilkSlime. All rights reserved.</span>
+        </div>
+    </footer>
+
+</body>
+</html>
